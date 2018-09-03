@@ -1,5 +1,6 @@
   OpenCVTemplateUI.About.resources - Embedded, ContainedInManifestFile, 
   OpenCVTemplateUI.ContrastStretching.resources - Embedded, ContainedInManifestFile, 
+  OpenCVTemplateUI.Histogram.resources - Embedded, ContainedInManifestFile, 
   OpenCVTemplateUI.IntensityTransForm.resources - Embedded, ContainedInManifestFile, 
   OpenCVTemplateUI.MyainForm.resources - Embedded, ContainedInManifestFile, 
 ImageRuntimeVersion: v4.0.30319
@@ -21,6 +22,9 @@ Class OpenCVTemplateUI.About: AutoLayout, AnsiClass, Class, Public, BeforeFieldI
   :System.Windows.Forms.Form
     Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
 Class OpenCVTemplateUI.ContrastStretching: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+  :System.Windows.Forms.Form
+    Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+Class OpenCVTemplateUI.Histogram: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
   :System.Windows.Forms.Form
     Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
 Class OpenCVTemplateUI.IntensityTransForm: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit

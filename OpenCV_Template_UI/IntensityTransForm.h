@@ -278,7 +278,8 @@ namespace OpenCVTemplateUI {
 			if (img.data)
 			{
 				
-				imshow("Negative", Image2Negative(img));
+				
+				DrawCvImageColor(Image2Negative(img), pictureBox2);
 
 
 			}
@@ -339,6 +340,7 @@ namespace OpenCVTemplateUI {
 				Mat gray_image;
 				cvtColor(original_image, gray_image, cv::COLOR_RGB2GRAY);
 				gray_image = 255 - gray_image;
+				cvtColor(gray_image, gray_image, cv::COLOR_GRAY2BGR);
 				 return gray_image;
 			 }
 			private: Mat Image2Log(Mat origianl_image, int C) 

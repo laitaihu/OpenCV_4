@@ -3,6 +3,7 @@
 #include <opencv2\highgui\highgui.hpp>
 #include "IntensityTransForm.h"
 #include "ContrastStretching.h"
+#include "Histogram.h"
 #include "About.h"
 
 namespace OpenCVTemplateUI {
@@ -58,6 +59,9 @@ namespace OpenCVTemplateUI {
 	private: System::Windows::Forms::ToolStripMenuItem^  fig308ToolStripMenuItem;
 	private: System::Windows::Forms::ToolStripMenuItem^  fig309ToolStripMenuItem;
 	private: System::Windows::Forms::ToolStripMenuItem^  contrastStrechingToolStripMenuItem;
+	private: System::Windows::Forms::ToolStripMenuItem^  histogramToolStripMenuItem;
+
+
 
 		protected:
 
@@ -85,6 +89,7 @@ namespace OpenCVTemplateUI {
 					this->fig309ToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
 					this->logaritmicToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
 					this->contrastStrechingToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
+					this->histogramToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
 					this->aboutToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
 					this->menuStrip1->SuspendLayout();
 					this->SuspendLayout();
@@ -103,9 +108,9 @@ namespace OpenCVTemplateUI {
 					// 
 					// negativeTransformationToolStripMenuItem
 					// 
-					this->negativeTransformationToolStripMenuItem->DropDownItems->AddRange(gcnew cli::array< System::Windows::Forms::ToolStripItem^  >(4) {
+					this->negativeTransformationToolStripMenuItem->DropDownItems->AddRange(gcnew cli::array< System::Windows::Forms::ToolStripItem^  >(5) {
 						this->negativeToolStripMenuItem,
-							this->gammaToolStripMenuItem, this->logaritmicToolStripMenuItem, this->contrastStrechingToolStripMenuItem
+							this->gammaToolStripMenuItem, this->logaritmicToolStripMenuItem, this->contrastStrechingToolStripMenuItem, this->histogramToolStripMenuItem
 					});
 					this->negativeTransformationToolStripMenuItem->Name = L"negativeTransformationToolStripMenuItem";
 					this->negativeTransformationToolStripMenuItem->Size = System::Drawing::Size(148, 20);
@@ -115,7 +120,7 @@ namespace OpenCVTemplateUI {
 					// negativeToolStripMenuItem
 					// 
 					this->negativeToolStripMenuItem->Name = L"negativeToolStripMenuItem";
-					this->negativeToolStripMenuItem->Size = System::Drawing::Size(172, 22);
+					this->negativeToolStripMenuItem->Size = System::Drawing::Size(180, 22);
 					this->negativeToolStripMenuItem->Text = L"Negative";
 					this->negativeToolStripMenuItem->Click += gcnew System::EventHandler(this, &MyainForm::negativeToolStripMenuItem_Click);
 					// 
@@ -126,7 +131,7 @@ namespace OpenCVTemplateUI {
 							this->fig308ToolStripMenuItem, this->fig309ToolStripMenuItem
 					});
 					this->gammaToolStripMenuItem->Name = L"gammaToolStripMenuItem";
-					this->gammaToolStripMenuItem->Size = System::Drawing::Size(172, 22);
+					this->gammaToolStripMenuItem->Size = System::Drawing::Size(180, 22);
 					this->gammaToolStripMenuItem->Text = L"Gamma";
 					this->gammaToolStripMenuItem->Click += gcnew System::EventHandler(this, &MyainForm::gammaToolStripMenuItem_Click);
 					// 
@@ -154,16 +159,23 @@ namespace OpenCVTemplateUI {
 					// logaritmicToolStripMenuItem
 					// 
 					this->logaritmicToolStripMenuItem->Name = L"logaritmicToolStripMenuItem";
-					this->logaritmicToolStripMenuItem->Size = System::Drawing::Size(172, 22);
+					this->logaritmicToolStripMenuItem->Size = System::Drawing::Size(180, 22);
 					this->logaritmicToolStripMenuItem->Text = L"Logaritmic";
 					this->logaritmicToolStripMenuItem->Click += gcnew System::EventHandler(this, &MyainForm::logaritmicToolStripMenuItem_Click);
 					// 
 					// contrastStrechingToolStripMenuItem
 					// 
 					this->contrastStrechingToolStripMenuItem->Name = L"contrastStrechingToolStripMenuItem";
-					this->contrastStrechingToolStripMenuItem->Size = System::Drawing::Size(172, 22);
+					this->contrastStrechingToolStripMenuItem->Size = System::Drawing::Size(180, 22);
 					this->contrastStrechingToolStripMenuItem->Text = L"Contrast Streching";
 					this->contrastStrechingToolStripMenuItem->Click += gcnew System::EventHandler(this, &MyainForm::contrastStrechingToolStripMenuItem_Click);
+					// 
+					// histogramToolStripMenuItem
+					// 
+					this->histogramToolStripMenuItem->Name = L"histogramToolStripMenuItem";
+					this->histogramToolStripMenuItem->Size = System::Drawing::Size(180, 22);
+					this->histogramToolStripMenuItem->Text = L"Histogram";
+					this->histogramToolStripMenuItem->Click += gcnew System::EventHandler(this, &MyainForm::histogramToolStripMenuItem_Click);
 					// 
 					// aboutToolStripMenuItem
 					// 
@@ -251,6 +263,15 @@ namespace OpenCVTemplateUI {
 			h->Show();
 			h->Activate();
 		}
+		private: System::Void HistogramProcessingView()
+		{
+			clearMDI();
+			Histogram^ h = gcnew Histogram();
+			h->MdiParent = this;
+			h->MaximizeBox = true;
+			h->Show();
+			h->Activate();
+		}
 		private: System::Void aboutView()
 		{
 			clearMDI();
@@ -285,6 +306,10 @@ private: System::Void contrastStrechingToolStripMenuItem_Click(System::Object^  
 private: System::Void aboutToolStripMenuItem_Click(System::Object^  sender, System::EventArgs^  e) {
 	aboutView();
 
+}
+
+private: System::Void histogramToolStripMenuItem_Click(System::Object^  sender, System::EventArgs^  e) {
+	HistogramProcessingView();
 }
 };
 }

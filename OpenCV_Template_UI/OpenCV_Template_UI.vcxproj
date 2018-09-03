@@ -157,6 +157,7 @@
   <ItemGroup>
     <ClCompile Include="About.cpp" />
     <ClCompile Include="ContrastStretching.cpp" />
+    <ClCompile Include="Histogram.cpp" />
     <ClCompile Include="IntensityTransForm.cpp" />
     <ClCompile Include="MyainForm.cpp" />
   </ItemGroup>
@@ -165,6 +166,9 @@
       <FileType>CppForm</FileType>
     </ClInclude>
     <ClInclude Include="ContrastStretching.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
+    <ClInclude Include="Histogram.h">
       <FileType>CppForm</FileType>
     </ClInclude>
     <ClInclude Include="IntensityTransForm.h">
@@ -180,6 +184,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ContrastStretching.resx">
       <DependentUpon>ContrastStretching.h</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Histogram.resx">
+      <DependentUpon>Histogram.h</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="IntensityTransForm.resx">
       <DependentUpon>IntensityTransForm.h</DependentUpon>
