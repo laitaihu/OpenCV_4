@@ -155,10 +155,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="About.cpp" />
+    <ClCompile Include="ContrastStretching.cpp" />
     <ClCompile Include="IntensityTransForm.cpp" />
     <ClCompile Include="MyainForm.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="About.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
+    <ClInclude Include="ContrastStretching.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
     <ClInclude Include="IntensityTransForm.h">
       <FileType>CppForm</FileType>
     </ClInclude>
@@ -167,6 +175,12 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="About.resx">
+      <DependentUpon>About.h</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ContrastStretching.resx">
+      <DependentUpon>ContrastStretching.h</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="IntensityTransForm.resx">
       <DependentUpon>IntensityTransForm.h</DependentUpon>
     </EmbeddedResource>

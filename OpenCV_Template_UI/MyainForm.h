@@ -2,6 +2,8 @@
 #include <opencv2/core/core.hpp>
 #include <opencv2\highgui\highgui.hpp>
 #include "IntensityTransForm.h"
+#include "ContrastStretching.h"
+#include "About.h"
 
 namespace OpenCVTemplateUI {
 
@@ -55,6 +57,7 @@ namespace OpenCVTemplateUI {
 	private: System::Windows::Forms::ToolStripMenuItem^  fig307ToolStripMenuItem;
 	private: System::Windows::Forms::ToolStripMenuItem^  fig308ToolStripMenuItem;
 	private: System::Windows::Forms::ToolStripMenuItem^  fig309ToolStripMenuItem;
+	private: System::Windows::Forms::ToolStripMenuItem^  contrastStrechingToolStripMenuItem;
 
 		protected:
 
@@ -81,6 +84,7 @@ namespace OpenCVTemplateUI {
 					this->fig308ToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
 					this->fig309ToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
 					this->logaritmicToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
+					this->contrastStrechingToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
 					this->aboutToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
 					this->menuStrip1->SuspendLayout();
 					this->SuspendLayout();
@@ -99,9 +103,9 @@ namespace OpenCVTemplateUI {
 					// 
 					// negativeTransformationToolStripMenuItem
 					// 
-					this->negativeTransformationToolStripMenuItem->DropDownItems->AddRange(gcnew cli::array< System::Windows::Forms::ToolStripItem^  >(3) {
+					this->negativeTransformationToolStripMenuItem->DropDownItems->AddRange(gcnew cli::array< System::Windows::Forms::ToolStripItem^  >(4) {
 						this->negativeToolStripMenuItem,
-							this->gammaToolStripMenuItem, this->logaritmicToolStripMenuItem
+							this->gammaToolStripMenuItem, this->logaritmicToolStripMenuItem, this->contrastStrechingToolStripMenuItem
 					});
 					this->negativeTransformationToolStripMenuItem->Name = L"negativeTransformationToolStripMenuItem";
 					this->negativeTransformationToolStripMenuItem->Size = System::Drawing::Size(148, 20);
@@ -111,7 +115,7 @@ namespace OpenCVTemplateUI {
 					// negativeToolStripMenuItem
 					// 
 					this->negativeToolStripMenuItem->Name = L"negativeToolStripMenuItem";
-					this->negativeToolStripMenuItem->Size = System::Drawing::Size(180, 22);
+					this->negativeToolStripMenuItem->Size = System::Drawing::Size(172, 22);
 					this->negativeToolStripMenuItem->Text = L"Negative";
 					this->negativeToolStripMenuItem->Click += gcnew System::EventHandler(this, &MyainForm::negativeToolStripMenuItem_Click);
 					// 
@@ -122,43 +126,51 @@ namespace OpenCVTemplateUI {
 							this->fig308ToolStripMenuItem, this->fig309ToolStripMenuItem
 					});
 					this->gammaToolStripMenuItem->Name = L"gammaToolStripMenuItem";
-					this->gammaToolStripMenuItem->Size = System::Drawing::Size(180, 22);
+					this->gammaToolStripMenuItem->Size = System::Drawing::Size(172, 22);
 					this->gammaToolStripMenuItem->Text = L"Gamma";
 					this->gammaToolStripMenuItem->Click += gcnew System::EventHandler(this, &MyainForm::gammaToolStripMenuItem_Click);
 					// 
 					// fig307ToolStripMenuItem
 					// 
 					this->fig307ToolStripMenuItem->Name = L"fig307ToolStripMenuItem";
-					this->fig307ToolStripMenuItem->Size = System::Drawing::Size(180, 22);
+					this->fig307ToolStripMenuItem->Size = System::Drawing::Size(118, 22);
 					this->fig307ToolStripMenuItem->Text = L"Fig_3_07";
 					this->fig307ToolStripMenuItem->Click += gcnew System::EventHandler(this, &MyainForm::fig307ToolStripMenuItem_Click);
 					// 
 					// fig308ToolStripMenuItem
 					// 
 					this->fig308ToolStripMenuItem->Name = L"fig308ToolStripMenuItem";
-					this->fig308ToolStripMenuItem->Size = System::Drawing::Size(180, 22);
+					this->fig308ToolStripMenuItem->Size = System::Drawing::Size(118, 22);
 					this->fig308ToolStripMenuItem->Text = L"Fig_3_08";
 					this->fig308ToolStripMenuItem->Click += gcnew System::EventHandler(this, &MyainForm::fig308ToolStripMenuItem_Click);
 					// 
 					// fig309ToolStripMenuItem
 					// 
 					this->fig309ToolStripMenuItem->Name = L"fig309ToolStripMenuItem";
-					this->fig309ToolStripMenuItem->Size = System::Drawing::Size(180, 22);
+					this->fig309ToolStripMenuItem->Size = System::Drawing::Size(118, 22);
 					this->fig309ToolStripMenuItem->Text = L"Fig_3_09";
 					this->fig309ToolStripMenuItem->Click += gcnew System::EventHandler(this, &MyainForm::fig309ToolStripMenuItem_Click);
 					// 
 					// logaritmicToolStripMenuItem
 					// 
 					this->logaritmicToolStripMenuItem->Name = L"logaritmicToolStripMenuItem";
-					this->logaritmicToolStripMenuItem->Size = System::Drawing::Size(180, 22);
+					this->logaritmicToolStripMenuItem->Size = System::Drawing::Size(172, 22);
 					this->logaritmicToolStripMenuItem->Text = L"Logaritmic";
 					this->logaritmicToolStripMenuItem->Click += gcnew System::EventHandler(this, &MyainForm::logaritmicToolStripMenuItem_Click);
+					// 
+					// contrastStrechingToolStripMenuItem
+					// 
+					this->contrastStrechingToolStripMenuItem->Name = L"contrastStrechingToolStripMenuItem";
+					this->contrastStrechingToolStripMenuItem->Size = System::Drawing::Size(172, 22);
+					this->contrastStrechingToolStripMenuItem->Text = L"Contrast Streching";
+					this->contrastStrechingToolStripMenuItem->Click += gcnew System::EventHandler(this, &MyainForm::contrastStrechingToolStripMenuItem_Click);
 					// 
 					// aboutToolStripMenuItem
 					// 
 					this->aboutToolStripMenuItem->Name = L"aboutToolStripMenuItem";
 					this->aboutToolStripMenuItem->Size = System::Drawing::Size(52, 20);
 					this->aboutToolStripMenuItem->Text = L"About";
+					this->aboutToolStripMenuItem->Click += gcnew System::EventHandler(this, &MyainForm::aboutToolStripMenuItem_Click);
 					// 
 					// MyainForm
 					// 
@@ -185,7 +197,8 @@ namespace OpenCVTemplateUI {
 		}
 		private: System::Void MyainForm_Load(System::Object^  sender, System::EventArgs^  e) 
 		{
-
+			selectTransform(1);
+	
 		}
 		private: System::Void tableLayoutPanel1_Paint(System::Object^  sender, System::Windows::Forms::PaintEventArgs^  e) 
 		{
@@ -219,10 +232,7 @@ namespace OpenCVTemplateUI {
 
 		private: System::Void selectTransform(int caso)
 		{
-			for each(Form^ c in MdiChildren)
-			{
-				c->Close();
-			}
+			clearMDI();
 			IntensityTransForm^ h =gcnew IntensityTransForm(caso);
 			h->MdiParent = this;
 			h->MaximizeBox = true;
@@ -232,6 +242,32 @@ namespace OpenCVTemplateUI {
 			
 			
 		}
+		private: System::Void contrastStretchingView()
+		{
+			clearMDI();
+			ContrastStretching^ h = gcnew ContrastStretching();
+			h->MdiParent = this;
+			h->MaximizeBox = true;
+			h->Show();
+			h->Activate();
+		}
+		private: System::Void aboutView()
+		{
+			clearMDI();
+			About^ h = gcnew About();
+			h->MdiParent = this;
+			h->MaximizeBox = true;
+			h->Show();
+			h->Activate();
+		}
+		private: System::Void clearMDI()
+		{
+			for each(Form^ c in MdiChildren)
+			{
+				c->Close();
+			}
+		}
+
 				 
 		
 private: System::Void fig308ToolStripMenuItem_Click(System::Object^  sender, System::EventArgs^  e) {
@@ -242,6 +278,13 @@ private: System::Void fig307ToolStripMenuItem_Click(System::Object^  sender, Sys
 }
 private: System::Void fig309ToolStripMenuItem_Click(System::Object^  sender, System::EventArgs^  e) {
 	selectTransform(5);
+}
+private: System::Void contrastStrechingToolStripMenuItem_Click(System::Object^  sender, System::EventArgs^  e) {
+	contrastStretchingView();
+}
+private: System::Void aboutToolStripMenuItem_Click(System::Object^  sender, System::EventArgs^  e) {
+	aboutView();
+
 }
 };
 }
