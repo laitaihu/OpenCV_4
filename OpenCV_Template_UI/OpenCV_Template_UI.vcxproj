@@ -159,6 +159,7 @@
     <ClCompile Include="ContrastStretching.cpp" />
     <ClCompile Include="Histogram.cpp" />
     <ClCompile Include="IntensityTransForm.cpp" />
+    <ClCompile Include="LocalHist.cpp" />
     <ClCompile Include="MyainForm.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -172,6 +173,9 @@
       <FileType>CppForm</FileType>
     </ClInclude>
     <ClInclude Include="IntensityTransForm.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
+    <ClInclude Include="LocalHist.h">
       <FileType>CppForm</FileType>
     </ClInclude>
     <ClInclude Include="MyainForm.h">
@@ -190,6 +194,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="IntensityTransForm.resx">
       <DependentUpon>IntensityTransForm.h</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="LocalHist.resx">
+      <DependentUpon>LocalHist.h</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MyainForm.resx">
       <DependentUpon>MyainForm.h</DependentUpon>

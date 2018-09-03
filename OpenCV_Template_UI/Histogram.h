@@ -21,8 +21,9 @@ namespace OpenCVTemplateUI {
 	public ref class Histogram : public System::Windows::Forms::Form
 	{
 	public:
-		Histogram(void)
+		Histogram(int caso2)
 		{
+			caso = caso2;
 			InitializeComponent();
 			//
 			//TODO: agregar código de constructor aquí
@@ -51,6 +52,7 @@ namespace OpenCVTemplateUI {
 	private: System::Windows::Forms::PictureBox^  pictureBox8;
 	private: System::Windows::Forms::Button^  button1;
 	private: System::Windows::Forms::Button^  button2;
+	private: int caso;
 
 	private:
 		/// <summary>
@@ -155,7 +157,7 @@ namespace OpenCVTemplateUI {
 			this->button1->Name = L"button1";
 			this->button1->Size = System::Drawing::Size(129, 67);
 			this->button1->TabIndex = 11;
-			this->button1->Text = L"Histogram Processing Manual";
+			this->button1->Text = L"Show Original";
 			this->button1->UseVisualStyleBackColor = true;
 			this->button1->Click += gcnew System::EventHandler(this, &Histogram::button1_Click);
 			// 
@@ -165,7 +167,7 @@ namespace OpenCVTemplateUI {
 			this->button2->Name = L"button2";
 			this->button2->Size = System::Drawing::Size(129, 67);
 			this->button2->TabIndex = 12;
-			this->button2->Text = L"Histogram Processing Automatic";
+			this->button2->Text = L"Histogram Processing";
 			this->button2->UseVisualStyleBackColor = true;
 			this->button2->Click += gcnew System::EventHandler(this, &Histogram::button2_Click);
 			// 
@@ -187,6 +189,7 @@ namespace OpenCVTemplateUI {
 			this->Name = L"Histogram";
 			this->Text = L"Histogram";
 			this->WindowState = System::Windows::Forms::FormWindowState::Maximized;
+			this->Load += gcnew System::EventHandler(this, &Histogram::Histogram_Load);
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox4))->EndInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox1))->EndInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox2))->EndInit();
@@ -205,26 +208,16 @@ namespace OpenCVTemplateUI {
 		img2 = imread("images/Fig0320(2)(2nd_from_top).tif");
 		img3 = imread("images/Fig0320(3)(third_from_top).tif");
 		img4 = imread("images/Fig0320(4)(bottom_left).tif");
-		if (img.data)
+		if (img.data && img2.data && img3.data && img4.data)
 		{
-			DrawCvImageColor(histogramProcessingManual(img), pictureBox4);
-
-
-		}
-		if (img2.data)
-		{
-			DrawCvImageColor(histogramProcessingManual(img2), pictureBox1);
+			
+			DrawCvImageColor(img, pictureBox4);
+			DrawCvImageColor(img2, pictureBox1);
+			DrawCvImageColor(img3, pictureBox3);
+			DrawCvImageColor(img4, pictureBox2);
 
 		}
-		if (img3.data)
-		{
-			DrawCvImageColor(histogramProcessingManual(img3), pictureBox3);
-
-		}
-		if (img4.data)
-		{
-			DrawCvImageColor(histogramProcessingManual(img4), pictureBox2);
-		}
+		
 		button1->Enabled = false;
 		
 	}
@@ -273,40 +266,41 @@ namespace OpenCVTemplateUI {
 	{
 		Mat clone = original_image.clone();
 
-				 /// Convert to grayscale
-				 cvtColor(clone, clone, COLOR_BGR2GRAY);
+		/// Convert to grayscale
+		cvtColor(clone, clone, COLOR_BGR2GRAY);
 
-				 /// Apply Histogram Equalization
-				 equalizeHist(clone,clone);
-				 cvtColor(clone, clone, COLOR_GRAY2BGR);
-				 return clone;
-			 }
+		/// Apply Histogram Equalization
+		equalizeHist(clone, clone);
+		cvtColor(clone, clone, COLOR_GRAY2BGR);
+		return clone;
+	}
 private: System::Void button2_Click(System::Object^  sender, System::EventArgs^  e) {
 	Mat img,img2,img3,img4;
 	img = imread("images/Fig0320(1)(top_left).tif");
 	img2 = imread("images/Fig0320(2)(2nd_from_top).tif");
 	img3 = imread("images/Fig0320(3)(third_from_top).tif");
 	img4 = imread("images/Fig0320(4)(bottom_left).tif");
-	if (img.data)
+	if (img.data && img2.data && img3.data && img4.data)
 	{
-		DrawCvImageColor(cvHistogramEqu(img), pictureBox8);
+		if (caso == 1)
+		{
+			DrawCvImageColor(cvHistogramEqu(img), pictureBox8);
+			DrawCvImageColor(cvHistogramEqu(img2), pictureBox7);
+			DrawCvImageColor(cvHistogramEqu(img3), pictureBox6);
+			DrawCvImageColor(cvHistogramEqu(img4), pictureBox5);
+		}
+		else if(caso ==2)
+		{
+			DrawCvImageColor(histogramProcessingManual(img), pictureBox8);
+			DrawCvImageColor(histogramProcessingManual(img), pictureBox7);
+			DrawCvImageColor(histogramProcessingManual(img), pictureBox6);
+			DrawCvImageColor(histogramProcessingManual(img), pictureBox5);
+		}
+		
 		
 		
 	}
-	if (img2.data)
-	{
-		DrawCvImageColor(cvHistogramEqu(img2), pictureBox7);
-		
-	}
-	if (img3.data)
-	{
-		DrawCvImageColor(cvHistogramEqu(img3), pictureBox6);
-		
-	}
-	if (img4.data)
-	{
-		DrawCvImageColor(cvHistogramEqu(img4), pictureBox5);
-	}
+	
 	button2->Enabled = false;
 
 }
@@ -319,6 +313,17 @@ private: System::Void DrawCvImageColor(Mat img, System::Windows::Forms::PictureB
 		img.rows, img.step, System::Drawing::Imaging::PixelFormat::Format32bppArgb, ptr);
 	System::Drawing::RectangleF rect(0, 0, localBox->Width, localBox->Height);
 	graphics->DrawImage(b, rect);
+}
+private: System::Void Histogram_Load(System::Object^  sender, System::EventArgs^  e) {
+	if (caso == 1)
+	{
+		button2->Text = "Histogram Processing Automatic";
+	}
+	else if (caso ==2)
+	{
+		button2->Text = "Histogram Processing Manual";
+	}
+	
 }
 };
 }
