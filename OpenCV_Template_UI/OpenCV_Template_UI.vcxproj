@@ -75,22 +75,22 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
-    <ExecutablePath>D:\Program_Files\OpenCV\opencv\build\include;$(ExecutablePath)</ExecutablePath>
+    <ExecutablePath>D:\Program_Files\OpenCV\opencv\build\include\opencv2;D:\Program_Files\OpenCV\opencv\build\include\opencv;D:\Program_Files\OpenCV\opencv\build\include;$(ExecutablePath)</ExecutablePath>
     <LibraryPath>D:\Program_Files\OpenCV\opencv\build\x64\vc15\lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
-    <ExecutablePath>D:\Program_Files\OpenCV\opencv\build\include;$(ExecutablePath)</ExecutablePath>
+    <ExecutablePath>D:\Program_Files\OpenCV\opencv\build\include\opencv2;D:\Program_Files\OpenCV\opencv\build\include\opencv;D:\Program_Files\OpenCV\opencv\build\include;$(ExecutablePath)</ExecutablePath>
     <LibraryPath>D:\Program_Files\OpenCV\opencv\build\x64\vc15\lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
-    <ExecutablePath>D:\Program_Files\OpenCV\opencv\build\include;$(ExecutablePath)</ExecutablePath>
+    <ExecutablePath>D:\Program_Files\OpenCV\opencv\build\include\opencv2;D:\Program_Files\OpenCV\opencv\build\include\opencv;D:\Program_Files\OpenCV\opencv\build\include;$(ExecutablePath)</ExecutablePath>
     <LibraryPath>D:\Program_Files\OpenCV\opencv\build\x64\vc15\lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
-    <ExecutablePath>D:\Program_Files\OpenCV\opencv\build\include;$(ExecutablePath)</ExecutablePath>
+    <ExecutablePath>D:\Program_Files\OpenCV\opencv\build\include\opencv2;D:\Program_Files\OpenCV\opencv\build\include\opencv;D:\Program_Files\OpenCV\opencv\build\include;$(ExecutablePath)</ExecutablePath>
     <LibraryPath>D:\Program_Files\OpenCV\opencv\build\x64\vc15\lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
@@ -98,11 +98,13 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>D:\Program_Files\OpenCV\opencv\build\include\opencv2;D:\Program_Files\OpenCV\opencv\build\include\opencv;D:\Program_Files\OpenCV\opencv\build\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <AdditionalDependencies>opencv_world342d.lib</AdditionalDependencies>
       <SubSystem>Windows</SubSystem>
       <EntryPointSymbol>Main</EntryPointSymbol>
+      <AdditionalLibraryDirectories>D:\Program_Files\OpenCV\opencv\build\x64\vc15\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -110,33 +112,39 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>D:\Program_Files\OpenCV\opencv\build\include\opencv2;D:\Program_Files\OpenCV\opencv\build\include\opencv;D:\Program_Files\OpenCV\opencv\build\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <AdditionalDependencies>opencv_world342d.lib</AdditionalDependencies>
       <SubSystem>Windows</SubSystem>
       <EntryPointSymbol>Main</EntryPointSymbol>
+      <AdditionalLibraryDirectories>D:\Program_Files\OpenCV\opencv\build\x64\vc15\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>WIN32;NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>D:\Program_Files\OpenCV\opencv\build\include\opencv2;D:\Program_Files\OpenCV\opencv\build\include\opencv;D:\Program_Files\OpenCV\opencv\build\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <AdditionalDependencies>opencv_world342d.lib</AdditionalDependencies>
       <SubSystem>Windows</SubSystem>
       <EntryPointSymbol>Main</EntryPointSymbol>
+      <AdditionalLibraryDirectories>D:\Program_Files\OpenCV\opencv\build\x64\vc15\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>D:\Program_Files\OpenCV\opencv\build\include\opencv2;D:\Program_Files\OpenCV\opencv\build\include\opencv;D:\Program_Files\OpenCV\opencv\build\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <AdditionalDependencies>opencv_world342d.lib</AdditionalDependencies>
       <SubSystem>Windows</SubSystem>
       <EntryPointSymbol>Main</EntryPointSymbol>
+      <AdditionalLibraryDirectories>D:\Program_Files\OpenCV\opencv\build\x64\vc15\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
@@ -147,14 +155,21 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="IntensityTransForm.cpp" />
     <ClCompile Include="MyainForm.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="IntensityTransForm.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
     <ClInclude Include="MyainForm.h">
       <FileType>CppForm</FileType>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="IntensityTransForm.resx">
+      <DependentUpon>IntensityTransForm.h</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="MyainForm.resx">
       <DependentUpon>MyainForm.h</DependentUpon>
     </EmbeddedResource>
